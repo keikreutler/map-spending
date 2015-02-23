@@ -1,7 +1,7 @@
 L.mapbox.accessToken = 'pk.eyJ1IjoiZ2FtZXJhIiwiYSI6IjNlclVnZDAifQ.a8PjkEfE5i2aOShPawCy1A';
 var map = L.mapbox.map('map', 'gamera.l9377l9d', {
     zoomControl: false,
-}).setView([37.9996121898726, 23.7338161468506], 13);
+}).setView([37.9996121898726, 23.7338161468506], 14);
 
 new L.Control.Zoom({ position: 'bottomleft' }).addTo(map);
 
@@ -28,6 +28,14 @@ var apartment = new L.layerGroup();
 var personal = new L.layerGroup();
 var food = new L.layerGroup();
 var transport = new L.layerGroup();
+
+var overlays = {
+    "Apartment": apartment,
+    "Personal": personal,
+    "Food": food,
+    "Transport": transport
+};
+
 
 function createMarkers(data) {
     for(i = 0; i < items.length; i++) {
@@ -60,3 +68,5 @@ map.addLayer(apartment);
 map.addLayer(food);
 map.addLayer(personal);
 map.addLayer(transport);
+
+new L.control.layers(null, overlays, { position: 'bottomright', collapsed: false }).addTo(map);
