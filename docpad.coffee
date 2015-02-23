@@ -12,12 +12,11 @@ docpadConfig = {
 		# Specify some site properties
 		site:
 			# The production url of our website
-			url: "http://website.com"
+			url: "http://tellyoulater.biz"
 
 			# Here are some old site urls that you would like to redirect from
 			oldUrls: [
-				'www.website.com',
-				'website.herokuapp.com'
+
 			]
 
 			# The default title of our website
@@ -25,23 +24,26 @@ docpadConfig = {
 
 			# The website description (for SEO)
 			description: """
-				When your website appears in search results in say Google, the text here will be shown underneath your website's title.
+				A site for tracking, mapping, and sharing personal spending.
 				"""
 
 			# The website keywords (for SEO) separated by commas
 			keywords: """
-				place, your, website, keywoards, here, keep, them, related, to, the, content, of, your, website
+				quanitified self, accounting, map, open data
 				"""
 
 			# The website author's name
-			author: "Your Name"
+			author: "Aporia"
 
 			# The website author's email
-			email: "your@email.com"
+			email: "kei@ourmachine.net"
 
 			# Styles
 			styles: [
+				"//fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,700,600&subset=latin,latin-ext"
+				"//fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700&subset=latin,latin-ext"
 				"/styles/twitter-bootstrap.css"
+				"//api.tiles.mapbox.com/mapbox.js/v2.1.0/mapbox.css"
 				"/styles/style.css"
 			]
 
@@ -50,7 +52,11 @@ docpadConfig = {
 				"//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"
 				"//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"
 				"/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"
+				"//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"
+				"//api.tiles.mapbox.com/mapbox.js/v2.0.1/mapbox.js"
+				"//cdn.bootcss.com/tabletop.js/1.3.5/tabletop.min.js"
 				"/scripts/script.js"
+				"/scripts/map.js"
 			]
 
 
