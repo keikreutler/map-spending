@@ -20,7 +20,7 @@ docpadConfig = {
 			]
 
 			# The default title of our website
-			title: "Your Website"
+			title: "ΟΙΚΟΤΟΠΙΑ"
 
 			# The website description (for SEO)
 			description: """
@@ -54,7 +54,11 @@ docpadConfig = {
 				"/vendor/twitter-bootstrap/dist/js/bootstrap.min.js"
 				"//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"
 				"//api.tiles.mapbox.com/mapbox.js/v2.0.1/mapbox.js"
+				"//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-heat/v0.1.3/leaflet-heat.js"
+				"//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min.js"
+				"//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"
 				"//cdn.bootcss.com/tabletop.js/1.3.5/tabletop.min.js"
+				"/scripts/backbone-tabletopSync.js"
 				"/scripts/script.js"
 				"/scripts/map.js"
 			]
@@ -70,7 +74,7 @@ docpadConfig = {
 		getPreparedTitle: ->
 			# if we have a document title, then we should use that and suffix the site's title onto it
 			if @document.title
-				"#{@document.title} | #{@site.title}"
+				"#{@site.title}"
 			# if our document does not have it's own title, then we should just use the site's title
 			else
 				@site.title
