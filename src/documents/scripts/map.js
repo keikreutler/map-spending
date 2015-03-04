@@ -31,6 +31,8 @@ var personal = new L.layerGroup();
 var food = new L.layerGroup();
 var transport = new L.layerGroup();
 
+var clusterGroups = [];
+
 var overlays = {
     "Apartment": apartment,
     "Personal": personal,
@@ -74,6 +76,10 @@ function createMarkers(data) {
     for(i = 0; i < items.length; i++) {
 		marker = L.marker([data[i].lat, data[i].lng]);
 		createPopups(marker, data[i].item, data[i].vendor, data[i].category);
+		if(clusterGroups[data[i].vendor] === undefined) {
+			clusterGroups[data[i].vendor] = new L.MarkerClusterGroup(); 
+		}
+		clusterGroups[data[i].vendor].addLayer(marker);
 		/* Add marker to specific layer groups */
 		switch(data[i].category) {
 			case "Apartment":
@@ -95,7 +101,7 @@ function createMarkers(data) {
 				marker.setIcon(L.mapbox.marker.icon({
 					'marker-color': '#83E6ED',
 					'marker-size': 'small',
-					'marker-opacity': '.8'
+					'opacity': '.5'
 				}));
 			break;
 			case "Transport":
