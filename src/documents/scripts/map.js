@@ -18,6 +18,7 @@ var spreadsheet_data = Tabletop.init( { key: public_spreadsheet_url,
 
 function showInfo(data, tabletop) {
     items = spreadsheet_data.data();
+    createLayers(items);
     createMarkers(items);
 }
 
@@ -32,12 +33,21 @@ var transport = new L.layerGroup();
 
 var clusterGroups = [];
 
-var overlays = {
+var overlays = [];
+/*
+
+
+var apartment = new L.layerGroup();
+var personal = new L.layerGroup();
+var food = new L.layerGroup();
+var transport = new L.layerGroup();
+
+{
     "Apartment": apartment,
     "Personal": personal,
     "Food": food,
     "Transport": transport
-};
+};*/
 
 var markers = new L.MarkerClusterGroup({
 	maxClusterRadius: 20
@@ -71,6 +81,7 @@ var icon_transport = L.icon({
 function createLayers(data) {
 	for(i = 0; i < items.length; i++) {
 		if(overlays[data[i].category] === undefined){
+			overlays[data[i].category] = new L.layerGroup();
 		}
 	}
 }
@@ -78,50 +89,26 @@ function createLayers(data) {
 function createMarkers(data) {
     for(i = 0; i < items.length; i++) {
 		marker = L.marker([data[i].lat, data[i].lng]);
+		createPopups(marker, data[i].item, data[i].vendor, data[i].category);
+		overlays[data[i].category].addLayer(marker);
 		marker.setIcon(L.mapbox.marker.icon({
-			'marker-color': '#CCC',
+			'marker-color': '#AAA',
 			'marker-size': 'small'
 		}));
-		createPopups(marker, data[i].item, data[i].vendor, data[i].category);
-		/* Add marker to specific layer groups */
-		switch(data[i].category) {
-			case "Apartment":
-				apartment.addLayer(marker);
-				marker.setIcon(L.mapbox.marker.icon({
-					'marker-color': '#AAA',
-					'marker-size': 'small'
-				}));
-			break;
-			case "Food":
-				food.addLayer(marker);
-				marker.setIcon(L.mapbox.marker.icon({
-					'marker-color': '#BBB',
-					'marker-size': 'small'
-				}));
-			break;
-			case "Personal":
-				personal.addLayer(marker);
-				marker.setIcon(L.mapbox.marker.icon({
-					'marker-color': '#CCC',
-					'marker-size': 'small',
-					'opacity': '.5'
-				}));
-			break;
-			case "Transport":
-				transport.addLayer(marker);
-				marker.setIcon(L.mapbox.marker.icon({
-					'marker-color': '#DDD',
-					'marker-size': 'small'
-				}));
-			break;
-		}
 		markers.addLayer(marker);
 	}
+	addCategoryLayers();
 }
 
 function createPopups(marker, item, vendor, category) {
 	popupContent = ('<div class="category"><h1>' + category + '</h1></div><div class="description"><p>Item: ' + item + '<br>Vendor: ' + vendor + '</p></div>');
 	marker.bindPopup(popupContent);
+}
+
+function addCategoryLayers() {
+    for(i = 0; i < overlays.length; i++) {
+    	map.addLayer(overlays[i]);
+    }
 }
 
 /*map.addLayer(apartment);
@@ -137,48 +124,4 @@ new L.control.layers(null, overlays, { position: 'bottomright', collapsed: true 
 Render text data
 **********************/
 
-var Spending = Backbone.Model.extend({
-	tabletop: {
-		instance: spreadsheet_data
-	},
-	sync: Backbone.tabletopSync
-})
-
-/*
-Need to specify that you'd like to sync using Backbone.tabletopSync
-Need to specify a tabletop key and sheet
-*/
-var SpendingCollection = Backbone.Collection.extend({
-// Reference to this collection's model.
-model: Spending,
-	tabletop: {
-		instance: spreadsheet_data
-	},
-	sync: Backbone.tabletopSync
-});
-
-var SpendingView = Backbone.View.extend({
-	el: "#spending",
-	tagname: 'div',
-	template: _.template($('#spending-template').html()),
-
-	initialize: function(){
-	   this.listenTo(this.collection,"add", this.renderItem);          
-	},
-	render: function () {
-	   this.collection.each(function(model){
-	        var spendingTemplate = this.template(model.toJSON());
-	        this.$el.append(spendingTemplate);
-	   }, this);        
-	   return this;
-	},
-	renderItem: function(profile) {
-	    var spendingTemplate = this.template(profile.toJSON());
-	    this.$el.append(spendingTemplate);        
-	}
-});
-
-var spendingCollection = new SpendingCollection();
-var spendingView = new SpendingView({ collection: spendingCollection });
-spendingView.render();
 
