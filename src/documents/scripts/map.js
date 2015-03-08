@@ -89,7 +89,7 @@ function createLayers(data) {
 function createMarkers(data) {
     for(i = 0; i < items.length; i++) {
 		marker = L.marker([data[i].lat, data[i].lng]);
-		createPopups(marker, data[i].item, data[i].vendor, data[i].category);
+		createPopups(marker, data[i].item, data[i].vendor, data[i].category, data[i].total);
 		overlays[data[i].category].addLayer(marker);
 		marker.setIcon(L.mapbox.marker.icon({
 			'marker-color': '#AAA',
@@ -100,8 +100,8 @@ function createMarkers(data) {
 	addCategoryLayers();
 }
 
-function createPopups(marker, item, vendor, category) {
-	popupContent = ('<div class="category"><h1>' + category + '</h1></div><div class="description"><p>Item: ' + item + '<br>Vendor: ' + vendor + '</p></div>');
+function createPopups(marker, item, vendor, category, total) {
+	popupContent = ('<div class="category"><h1>' + category + '</h1></div><div class="description"><p>Item: ' + item + '<br>Vendor: ' + vendor + '<br>Cost: ' + total + '</p></div>');
 	marker.bindPopup(popupContent);
 }
 

@@ -59,7 +59,6 @@ docpadConfig = {
 				"//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-heat/v0.1.3/leaflet-heat.js"
 				"//cdn.bootcss.com/tabletop.js/1.3.5/tabletop.min.js"
 				"//cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js"
-				"/scripts/backbone-tabletopSync.js"
 				"/scripts/script.js"
 				"/scripts/map.js"
 			]
