@@ -44,7 +44,8 @@ docpadConfig = {
 				"//fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700&subset=latin,latin-ext"
 				"/styles/twitter-bootstrap.css"
 				"//api.tiles.mapbox.com/mapbox.js/v2.1.0/mapbox.css"
-				"//cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css"
+				"//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css"
+				"/styles/marker-cluster.css"
 				"/styles/style.css"
 			]
 
@@ -56,11 +57,8 @@ docpadConfig = {
 				"//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"
 				"//api.tiles.mapbox.com/mapbox.js/v2.0.1/mapbox.js"
 				"//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-heat/v0.1.3/leaflet-heat.js"
-				"//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min.js"
-				"//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"
 				"//cdn.bootcss.com/tabletop.js/1.3.5/tabletop.min.js"
 				"//cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js"
-				"/scripts/backbone-tabletopSync.js"
 				"/scripts/script.js"
 				"/scripts/map.js"
 			]
